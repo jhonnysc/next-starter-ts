@@ -25,7 +25,9 @@
   "plugins": ["react", "@typescript-eslint", "prettier", "import-helpers", "react-hooks"],
   "rules": {
 
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "import/no-unresolved": "off",
+    "import/extensions": "off",
     "semi": "off",
     "prettier/prettier": "error",
     "react/prop-types": "off",

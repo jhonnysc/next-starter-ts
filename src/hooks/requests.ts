@@ -1,14 +1,15 @@
-import Axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import useSwr from 'swr';
 
-type FetchReturn<T> = { data: T | undefined; error: AxiosError | undefined };
+type Request<T> = { data: T | undefined; error: AxiosError | undefined };
 
 export const useGet = <T>(
+  axiosInstance: AxiosInstance,
   url: string,
   requestConfig?: AxiosRequestConfig,
-): FetchReturn<T> => {
+): Request<T> => {
   const { data, error } = useSwr<T, AxiosError>(url, async (uri) => {
-    const response = await Axios.get(uri, requestConfig);
+    const response = await axiosInstance.get(uri, requestConfig);
     return response.data;
   });
 
@@ -16,12 +17,13 @@ export const useGet = <T>(
 };
 
 export const usePost = <T>(
+  axiosInstance: AxiosInstance,
   url: string,
   payload: never,
   requestConfig?: AxiosRequestConfig,
-): FetchReturn<T> => {
+): Request<T> => {
   const { data, error } = useSwr<T, AxiosError>(url, async (uri) => {
-    const response = await Axios.post(uri, payload, requestConfig);
+    const response = await axiosInstance.post(uri, payload, requestConfig);
     return response.data;
   });
 
@@ -29,12 +31,14 @@ export const usePost = <T>(
 };
 
 export const usePut = <T>(
+  axiosInstance: AxiosInstance,
+
   url: string,
   payload: never,
   requestConfig?: AxiosRequestConfig,
-): FetchReturn<T> => {
+): Request<T> => {
   const { data, error } = useSwr<T, AxiosError>(url, async (uri) => {
-    const response = await Axios.put(uri, payload, requestConfig);
+    const response = await axiosInstance.put(uri, payload, requestConfig);
     return response.data;
   });
 
@@ -42,12 +46,13 @@ export const usePut = <T>(
 };
 
 export const usePatch = <T>(
+  axiosInstance: AxiosInstance,
   url: string,
   payload: never,
   requestConfig?: AxiosRequestConfig,
-): FetchReturn<T> => {
+): Request<T> => {
   const { data, error } = useSwr<T, AxiosError>(url, async (uri) => {
-    const response = await Axios.patch(uri, payload, requestConfig);
+    const response = await axiosInstance.patch(uri, payload, requestConfig);
     return response.data;
   });
 
@@ -55,11 +60,12 @@ export const usePatch = <T>(
 };
 
 export const useDelete = <T>(
+  axiosInstance: AxiosInstance,
   url: string,
   requestConfig?: AxiosRequestConfig,
-): FetchReturn<T> => {
+): Request<T> => {
   const { data, error } = useSwr<T, AxiosError>(url, async (uri) => {
-    const response = await Axios.delete(uri, requestConfig);
+    const response = await axiosInstance.delete(uri, requestConfig);
     return response.data;
   });
 
