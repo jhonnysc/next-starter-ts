@@ -5,6 +5,8 @@ type Request<T> = { data: T | undefined; error: AxiosError | undefined };
 
 const test = 2;
 
+console.log(test);
+
 export const useGet = <T>(
   axiosInstance: AxiosInstance,
   url: string,
