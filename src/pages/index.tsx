@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { User } from '@/@types/user';
 import api from '@/services/api';
-import { Container, Title } from '@/styles/pages/Home';
+import { Container } from '@/styles/pages/Home';
 
 interface Props {
   users: User[];
